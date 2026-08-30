@@ -1,0 +1,17 @@
+{
+  "format": "pikoindex/1",
+  "updatedAt": "2026-08-30",
+  "packs": [
+    {
+      "id": "official-blender",
+      "name": "Blender essentials",
+      "author": "Piko",
+      "app": "blender.exe",
+      "versions": ["4.2", "4.3", "4.4"],
+      "recipeCount": 0,
+      "url": "https://raw.githubusercontent.com/AnasIbraiwesh/Piko-Recipes/main/packs/official-blender.pikopack",
+      "signed": true,
+      "description": ""
+    }
+  ]
+}

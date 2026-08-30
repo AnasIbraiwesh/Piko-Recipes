@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "recipe.v1.json",
+  "title": "Piko recipe v1",
+  "type": "object",
+  "required": ["format", "id", "name", "app", "intent", "steps", "author", "createdAt"],
+  "properties": {
+    "format": { "const": "pikorecipe/1" },
+    "id": { "type": "string", "format": "uuid" },
+    "name": { "type": "string", "maxLength": 80 },
+    "description": { "type": "string", "maxLength": 300 },
+    "app": {
+      "type": "object", "required": ["exe", "displayName", "versions"],
+      "properties": {
+        "exe": { "type": "string" },
+        "displayName": { "type": "string" },
+        "versions": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "intent": { "type": "string" },
+    "aliases": { "type": "array", "items": { "type": "string" } },
+    "author": { "type": "object", "required": ["name"], "properties": { "name": { "type": "string" }, "url": { "type": "string" } } },
+    "steps": {
+      "type": "array", "minItems": 1, "maxItems": 12,
+      "items": {
+        "type": "object", "required": ["say", "target", "action"],
+        "properties": {
+          "say": { "type": "string", "maxLength": 90 },
+          "target": {
+            "type": "object", "required": ["name", "role"],
+            "properties": {
+              "name": { "type": "string" },
+              "role": { "type": "string" },
+              "anchors": { "type": "object", "properties": { "parent": { "type": "string" }, "sibling": { "type": "string" } } }
+            }
+          },
+          "action": { "enum": ["ring", "click", "hotkey", "scroll", "wait"] },
+          "risk": { "enum": ["safe", "reversible"] }
+        }
+      }
+    },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "signature": { "type": "string" }
+  }
+}
